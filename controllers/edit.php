@@ -24,14 +24,7 @@ Class Controller_Edit Extends Controller_Base {
 
 			$this->registry['template']->set('first_name', 'Gosha');
 			$this->registry['template']->set('data', $data);
-			if($_SESSION['admin']==false){
-				$this->registry['template']->show('index');
-			}
-			else {
-				echo '11';
-				$this->registry['template']->show('edit');
-			}
-
+			$this->registry['template']->show('edit');
 		}
 
 

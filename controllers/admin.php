@@ -16,15 +16,17 @@ Class Controller_Admin Extends Controller_Base {
 
 			if(isset($_REQUEST['name']) AND isset($_REQUEST['email'])){
 				$model->insertData($_REQUEST['name'], $_REQUEST['email'], $_REQUEST['text']);
-				header("Location: /");
+				header("Location: /admin");
 				die();
 			}
 			$this->registry['template']->set('data', $data);
 			$this->registry['template']->set('count', $count);
 			$this->registry['template']->set('notesOnPage', $notesOnPage);
 			$this->registry['template']->set('page', $page);
-			if($_SESSION['admin']==true){
-				$this->registry['template']->show('admin');
+			if(isset($_SESSION['admin'])){
+				if($_SESSION['admin']==true){
+					$this->registry['template']->show('admin');
+				}
 			}
 
 		}

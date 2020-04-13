@@ -57,3 +57,5 @@
 					<input type="submit" class="btn btn-info btn-block" value="Сохранить">
 				</form>
 			</div>
+		</body>
+</html>
