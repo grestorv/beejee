@@ -8,9 +8,10 @@
 	</head>
 	<body>
 		<div id="wrapper">
+			<a href="/login" class="btn btn-primary" tabindex="-1" role="button">Авторизация</a>
 			<h1>Задачи</h1>
 				<div>
-				<a href="/login" class="btn btn-primary" tabindex="-1" role="button">Авторизация</a>
+	
 				<nav>
 				  <ul class="pagination">
 	<?php
@@ -35,13 +36,17 @@
 	if($value['complete']==0)
 	$complete='Не выполнено';
 	else $complete='Выполнено';
+
+	if($value['redacted']==1)
+		$redacted=' отредактировано администратором';
+	else $redacted='';
 	?>
 	<div class="note">
 			<p>
-				<span class="name"><?=$value['name']?></span>
-				<span class="email"><?=$value['email']?></span>
-				<span class=""><?=$value['text']?></span>
-				<span class=""><?=$complete?></span>
+				<span class="name clearfix"><?=$value['name']?></span>
+				<span class="email clearfix"><?=$value['email']?></span>
+				<span class="clearfix"><?=$value['text']?></span>
+				<span class="clearfix"><?=$complete?><?=$redacted?></span>
 			</p>
 	</div>
 	<?php

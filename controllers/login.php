@@ -23,7 +23,7 @@ Class Controller_Login Extends Controller_Base {
 
 			if($_POST)
 			{
-				if(empty($_REQUEST['name']) OR empty($_REQUEST['email']) OR empty($_REQUEST['text'])){				
+				if(empty($_REQUEST['login']) OR empty($_REQUEST['pass'])){				
 					$_SESSION['message']='Заполните все поля';
 				}
 				else{

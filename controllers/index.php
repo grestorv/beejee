@@ -22,6 +22,7 @@ Class Controller_Index Extends Controller_Base {
 				}
 				else $_SESSION['sort']=$_GET['sort'].' DESC';
 			}
+			
 			$data=$model->returnData($from, $notesOnPage, $_SESSION['sort']);
 
 			if($_POST){

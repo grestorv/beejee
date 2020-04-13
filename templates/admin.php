@@ -8,6 +8,8 @@
 	</head>
 	<body>
 		<div id="wrapper">
+
+		<a href="/logout" class="btn btn-primary" tabindex="-1" role="button">Выход из профиля</a>
 			<h1>Задачи</h1>
 				<div>
 				<nav>
@@ -34,13 +36,17 @@
 	if($value['complete']==0)
 	$complete='Не выполнено';
 	else $complete='Выполнено';
+
+	if($value['redacted']==1)
+		$redacted=' отредактировано администратором';
+	else $redacted='';
 	?>
 	<div class="note">
 			<p>
 				<span class="name"><?=$value['name']?></span>
 				<span class="email"><?=$value['email']?></span>
 				<span class=""><?=$value['text']?></span>
-				<span class=""><?=$complete?></span>
+				<span class="clearfix"><?=$complete?><?=$redacted?></span>
 				<span><a href="/edit?id=<?=$value['id']?>">изменить</a></span>
 			</p>
 	</div><?php } ?>
@@ -61,5 +67,6 @@
 				<a href="?page=<?=$page?>&sort=email">Сортировка по email</a>
 				<a href="?page=<?=$page?>&sort=complete">Сортировка по статусу</a>
 			</div>
+
 		</body>
 </html>

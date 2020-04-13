@@ -5,7 +5,10 @@ Class Controller_Edit Extends Controller_Base {
 
 
 		function index() {
-			if($_SESSION['admin']==false) die();
+			if($_SESSION['admin']==false) {
+				header("Location: /");
+				die();
+			}
 			$model=$this->model('edit');
 			$id=$_REQUEST['id'];
 			$data=$model->returnData($id);
@@ -15,14 +18,15 @@ Class Controller_Edit Extends Controller_Base {
 					else $complete=0;
 				}
 				else $complete=0;
-
-				$result=$model->updateData($id, $_REQUEST['name'], $_REQUEST['email'], $_REQUEST['text'], $complete);
+				if($_REQUEST['text']!=$data['text']){
+					$result=$model->updateData($id, $_REQUEST['name'], $_REQUEST['email'], $_REQUEST['text'], $complete, 1);
+				}
+				else $result=$model->updateData($id, $_REQUEST['name'], $_REQUEST['email'], $_REQUEST['text'], $complete, 0);
 				header("Location: /admin");
 				die();
 			}
 
 
-			$this->registry['template']->set('first_name', 'Gosha');
 			$this->registry['template']->set('data', $data);
 			$this->registry['template']->show('edit');
 		}
