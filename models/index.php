@@ -4,7 +4,9 @@
 		function returnData($from, $notesOnPage, $orderBy='id'){
 			$db=$this->registry['db'];
 			$query="SELECT * FROM problems";
-			$query = "SELECT * FROM problems ORDER BY $orderBy LIMIT $from,$notesOnPage";
+			$query = "SELECT * FROM problems ORDER BY $orderBy, id LIMIT $from,$notesOnPage";
+			if($orderBy=='complete') $query = "SELECT * FROM problems ORDER BY $orderBy, id LIMIT $from,$notesOnPage";
+			if($orderBy=='complete DESC') $query = "SELECT * FROM problems ORDER BY $orderBy, id DESC LIMIT $from,$notesOnPage";
 			$result=mysqli_query($db,$query) or die(mysqli_error($db));
 			for ($data = []; $row = mysqli_fetch_assoc($result); $data[] = $row);
 			foreach ($data as $key => $record) {

@@ -35,7 +35,7 @@ Class Controller_Admin Extends Controller_Base {
 					else{
 						$_SESSION['message']="Добавление прошло успешно";
 						$model->insertData($_REQUEST['name'], $_REQUEST['email'], $_REQUEST['text']);
-						header("Location: /?page=$page");
+						header("Location: /admin?page=$page");
 						die();
 					}
 				}
