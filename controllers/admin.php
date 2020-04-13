@@ -36,6 +36,7 @@ Class Controller_Admin Extends Controller_Base {
 						$_SESSION['message']="Добавление прошло успешно";
 						$model->insertData($_REQUEST['name'], $_REQUEST['email'], $_REQUEST['text']);
 						header("Location: /admin?page=$page");
+						unset($_COOKIE);
 						die();
 					}
 				}
@@ -47,6 +48,10 @@ Class Controller_Admin Extends Controller_Base {
 			if(isset($_SESSION['admin'])){
 				if($_SESSION['admin']==true){
 					$this->registry['template']->show('admin');
+				}
+				else{
+					header("Location: /login");
+					die();
 				}
 			}
 

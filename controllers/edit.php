@@ -6,7 +6,7 @@ Class Controller_Edit Extends Controller_Base {
 
 		function index() {
 			if($_SESSION['admin']==false) {
-				header("Location: /");
+				header("Location: /login");
 				die();
 			}
 			$model=$this->model('edit');
@@ -22,6 +22,10 @@ Class Controller_Edit Extends Controller_Base {
 					$result=$model->updateData($id, $_REQUEST['name'], $_REQUEST['email'], $_REQUEST['text'], $complete, 1);
 				}
 				else $result=$model->updateData($id, $_REQUEST['name'], $_REQUEST['email'], $_REQUEST['text'], $complete, 0);
+				setcookie("name","",time()-3600,"/");
+				setcookie("email","",time()-3600,"/");
+				setcookie("text","",time()-3600,"/");
+				setcookie("complete","",time()-3600,"/");
 				header("Location: /admin");
 				die();
 			}
