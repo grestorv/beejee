@@ -9,6 +9,7 @@ Class Controller_Index Extends Controller_Base {
 			if(!isset($_SESSION['sort'])) $_SESSION['sort']='id';
 
 			if(!isset($_SESSION['message'])) $_SESSION['message']='';
+			
 			$model=$this->model('index');
 			$page=1;
 			if(isset($_REQUEST['page'])) $page = $_REQUEST['page'];
