@@ -10,6 +10,7 @@
 		<div id="wrapper">
 			<h1>Задачи</h1>
 				<div>
+				<a href="/login" class="btn btn-primary" tabindex="-1" role="button">Авторизация</a>
 				<nav>
 				  <ul class="pagination">
 	<?php
@@ -44,10 +45,9 @@
 			</p>
 	</div>
 	<?php
-	//echo $value['name'].' '.$value['email'].' '.$value['text'].' '.$complete.'<br>';
-}
-
-?>
+	}
+	?>
+	<?php include "info.php"?>
 			<span class="text">Новая задача</span>
 			<div id="form">
 				<form action="#form" method="POST">
@@ -56,6 +56,11 @@
 					<textarea name="text" placeholder="Текст задачи"></textarea>
 					<input type="submit" class="btn btn-info btn-block" value="Сохранить">
 				</form>
+			</div>
+			<div id="links">
+				<a href="?page=<?=$page?>&sort=name">Сортировка по имени</a>
+				<a href="?page=<?=$page?>&sort=email">Сортировка по email</a>
+				<a href="?page=<?=$page?>&sort=complete">Сортировка по статусу</a>
 			</div>
 		</body>
 </html>

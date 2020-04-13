@@ -1,12 +1,16 @@
 <?php
 	Class Model_Index extends Model_Base{
 
-		function returnData($from, $notesOnPage, $orderBy='id'){
+		function returnData($from, $notesOnPage, $orderBy='name'){
 			$db=$this->registry['db'];
 			$query="SELECT * FROM problems";
-			$query = "SELECT * FROM problems ORDER BY id LIMIT $from,$notesOnPage";
+			$query = "SELECT * FROM problems ORDER BY $orderBy LIMIT $from,$notesOnPage";
 			$result=mysqli_query($db,$query) or die(mysqli_error($db));
 			for ($data = []; $row = mysqli_fetch_assoc($result); $data[] = $row);
+			foreach ($data as $key => $record) {
+					$record['text']=htmlspecialchars($record['text']);
+					$data[$key]=$record;
+			}
 			return $data;
 		}
 		function insertData($name, $email, $text){

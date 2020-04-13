@@ -43,12 +43,10 @@
 				<span class=""><?=$complete?></span>
 				<span><a href="/edit?id=<?=$value['id']?>">изменить</a></span>
 			</p>
-	</div>
-	<?php
-	//echo $value['name'].' '.$value['email'].' '.$value['text'].' '.$complete.'<br>';
-}
+	</div><?php } ?>
 
-?>
+	<?php include "info.php"?>
+
 			<span class="text">Новая задача</span>
 			<div id="form">
 				<form action="#form" method="POST">
@@ -57,6 +55,11 @@
 					<textarea name="text" placeholder="Текст задачи"></textarea>
 					<input type="submit" class="btn btn-info btn-block" value="Сохранить">
 				</form>
+			</div>
+			<div id="links">
+				<a href="?page=<?=$page?>&sort=name">Сортировка по имени</a>
+				<a href="?page=<?=$page?>&sort=email">Сортировка по email</a>
+				<a href="?page=<?=$page?>&sort=complete">Сортировка по статусу</a>
 			</div>
 		</body>
 </html>
