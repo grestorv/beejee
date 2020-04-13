@@ -26,6 +26,7 @@
 
 
 	$registry = new Registry;
+	//$db = mysqli_connect('localhost','zertruder','Zertrudopass2','zertruder');
 	$db = mysqli_connect('localhost','root','','beejee');
 	mysqli_query($db,"SET NAMES 'utf8'");
 	$registry->set ('db', $db);

@@ -6,8 +6,8 @@ Class Controller_Admin Extends Controller_Base {
 
 		function index() {
 			$model=$this->model('admin');
-
-			$_SESSION['message']='';
+			if(!isset($_SESSION['sort'])) $_SESSION['sort']='id';
+			if(!isset($_SESSION['message'])) $_SESSION['message']='';
 
 			$page=1;
 			if(isset($_REQUEST['page'])) $page = $_REQUEST['page'];
@@ -33,8 +33,10 @@ Class Controller_Admin Extends Controller_Base {
 						$_SESSION['message']="E-mail адрес '{$_REQUEST['email']}' указан неверно.";
 					}
 					else{
-						$_SESSION['message']="Success!";
+						$_SESSION['message']="Добавление прошло успешно";
 						$model->insertData($_REQUEST['name'], $_REQUEST['email'], $_REQUEST['text']);
+						header("Location: /?page=$page");
+						die();
 					}
 				}
 			}

@@ -6,10 +6,11 @@ Class Controller_Index Extends Controller_Base {
 
 		function index() {
 
-			if(!isset($_SESSION['sort'])) $_SESSION['sort']='name';
+			if(!isset($_SESSION['sort'])) $_SESSION['sort']='id';
+
+			if(!isset($_SESSION['message'])) $_SESSION['message']='';
 			$model=$this->model('index');
 			$page=1;
-			$_SESSION['message']='';
 			if(isset($_REQUEST['page'])) $page = $_REQUEST['page'];
 			$notesOnPage=3;
 			$from=($page-1)*$notesOnPage;
@@ -22,7 +23,7 @@ Class Controller_Index Extends Controller_Base {
 				}
 				else $_SESSION['sort']=$_GET['sort'].' DESC';
 			}
-			
+
 			$data=$model->returnData($from, $notesOnPage, $_SESSION['sort']);
 
 			if($_POST){
@@ -34,8 +35,10 @@ Class Controller_Index Extends Controller_Base {
 						$_SESSION['message']="E-mail адрес '{$_REQUEST['email']}' указан неверно.";
 					}
 					else{
-						$_SESSION['message']="Success!";
+						$_SESSION['message']="Добавление прошло успешно";
 						$model->insertData($_REQUEST['name'], $_REQUEST['email'], $_REQUEST['text']);
+						header("Location: /?page=$page");
+						die();
 					}
 				}
 			}

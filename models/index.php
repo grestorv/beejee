@@ -1,7 +1,7 @@
 <?php
 	Class Model_Index extends Model_Base{
 
-		function returnData($from, $notesOnPage, $orderBy='name'){
+		function returnData($from, $notesOnPage, $orderBy='id'){
 			$db=$this->registry['db'];
 			$query="SELECT * FROM problems";
 			$query = "SELECT * FROM problems ORDER BY $orderBy LIMIT $from,$notesOnPage";
