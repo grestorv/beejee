@@ -10,7 +10,7 @@ Class Controller_Edit Extends Controller_Base {
 				die();
 			}
 			$model=$this->model('edit');
-			$id=$_POST['id'];
+			$id=$_GET['id'];
 			$data=$model->returnData($id);
 			if(isset($_POST['name']) AND isset($_POST['email'])){
 				if(isset($_POST['complete'])){

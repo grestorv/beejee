@@ -14,15 +14,23 @@ Class Controller_Admin Extends Controller_Base {
 			$notesOnPage=3;
 			$from=($page-1)*$notesOnPage;
 			$count=$model->countOfPages();
+            $order="ASC";
 
 			if(isset($_GET['sort'])){
 				if($_SESSION['sort']!=$_GET['sort']){
 					$_SESSION['sort']=$_GET['sort'];
+                    $_SESSION['order']="ASC";
 				}
-				else $_SESSION['sort']=$_GET['sort'].' DESC';
+				//else $_SESSION['sort']=$_GET['sort'].' DESC';
+                else{
+                    $_SESSION['sort']=$_GET['sort'];
+                    if($_SESSION['order']=='ASC')
+                        $_SESSION['order']="DESC";
+                    else $_SESSION['order']='ASC';
+                }
 			}
 			
-			$data=$model->returnData($from, $notesOnPage, $_SESSION['sort']);
+			$data=$model->returnData($from, $notesOnPage, $_SESSION['sort'], $_SESSION['order']);
 
 			if($_POST){
 				if(empty($_POST['name']) OR empty($_POST['email']) OR empty($_POST['text'])){
