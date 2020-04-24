@@ -7,28 +7,28 @@ Class Controller_Login Extends Controller_Base {
 		function index() {
 
 			if($_POST){
-				if(empty($_REQUEST['name']) OR empty($_REQUEST['email']) OR empty($_REQUEST['text'])){				
+				if(empty($_POST['name']) OR empty($_POST['email']) OR empty($_POST['text'])){
 					$_SESSION['message']='Заполните все поля';
 				}
 				else{
-					if (!filter_var($_REQUEST['email'], FILTER_VALIDATE_EMAIL)) {
-						$_SESSION['message']="E-mail адрес '{$_REQUEST['email']}' указан неверно.";
+					if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+						$_SESSION['message']="E-mail адрес '{$_POST['email']}' указан неверно.";
 					}
 					else{
 						$_SESSION['message']="Success!";
-						$model->insertData($_REQUEST['name'], $_REQUEST['email'], $_REQUEST['text']);
+						$model->insertData($_POST['name'], $_POST['email'], $_POST['text']);
 					}
 				}
 			}
 
 			if($_POST)
 			{
-				if(empty($_REQUEST['login']) OR empty($_REQUEST['pass'])){				
+				if(empty($_POST['login']) OR empty($_POST['pass'])){
 					$_SESSION['message']='Заполните все поля';
 				}
 				else{
-					$login=$_REQUEST['login'];
-					$pass=$_REQUEST['pass'];
+					$login=$_POST['login'];
+					$pass=$_POST['pass'];
 					if($login=='admin' AND $pass=='123'){
 						$_SESSION['admin']=true;
 						header("Location: /admin");

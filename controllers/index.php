@@ -12,7 +12,7 @@ Class Controller_Index Extends Controller_Base {
 			
 			$model=$this->model('index');
 			$page=1;
-			if(isset($_REQUEST['page'])) $page = $_REQUEST['page'];
+			if(isset($_GET['page'])) $page = $_GET['page'];
 			$notesOnPage=3;
 			$from=($page-1)*$notesOnPage;
 			$count=$model->countOfPages();
@@ -28,16 +28,16 @@ Class Controller_Index Extends Controller_Base {
 			$data=$model->returnData($from, $notesOnPage, $_SESSION['sort']);
 
 			if($_POST){
-				if(empty($_REQUEST['name']) OR empty($_REQUEST['email']) OR empty($_REQUEST['text'])){				
+				if(empty($_POST['name']) OR empty($_POST['email']) OR empty($_POST['text'])){
 					$_SESSION['message']='Заполните все поля';
 				}
 				else{
-					if (!filter_var($_REQUEST['email'], FILTER_VALIDATE_EMAIL)) {
-						$_SESSION['message']="E-mail адрес '{$_REQUEST['email']}' указан неверно.";
+					if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+						$_SESSION['message']="E-mail адрес '{$_POST['email']}' указан неверно.";
 					}
 					else{
 						$_SESSION['message']="Добавление прошло успешно";
-						$model->insertData($_REQUEST['name'], $_REQUEST['email'], $_REQUEST['text']);
+						$model->insertData($_POST['name'], $_POST['email'], $_POST['text']);
 						header("Location: /?page=$page");
 						die();
 					}

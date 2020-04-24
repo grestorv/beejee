@@ -10,18 +10,18 @@ Class Controller_Edit Extends Controller_Base {
 				die();
 			}
 			$model=$this->model('edit');
-			$id=$_REQUEST['id'];
+			$id=$_POST['id'];
 			$data=$model->returnData($id);
-			if(isset($_REQUEST['name']) AND isset($_REQUEST['email'])){
-				if(isset($_REQUEST['complete'])){
-					if($_REQUEST['complete']==1) $complete=1;
+			if(isset($_POST['name']) AND isset($_POST['email'])){
+				if(isset($_POST['complete'])){
+					if($_POST['complete']==1) $complete=1;
 					else $complete=0;
 				}
 				else $complete=0;
-				if($_REQUEST['text']!=$data['text']){
-					$result=$model->updateData($id, $_REQUEST['name'], $_REQUEST['email'], $_REQUEST['text'], $complete, 1);
+				if($_POST['text']!=$data['text']){
+					$result=$model->updateData($id, $_POST['name'], $_POST['email'], $_POST['text'], $complete, 1);
 				}
-				else $result=$model->updateData($id, $_REQUEST['name'], $_REQUEST['email'], $_REQUEST['text'], $complete, 0);
+				else $result=$model->updateData($id, $_POST['name'], $_POST['email'], $_POST['text'], $complete, 0);
 				setcookie("name","",time()-3600,"/");
 				setcookie("email","",time()-3600,"/");
 				setcookie("text","",time()-3600,"/");
